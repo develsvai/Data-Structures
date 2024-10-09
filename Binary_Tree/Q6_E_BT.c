@@ -105,8 +105,22 @@ int main()
 
 void printSmallerValues(BTNode *node, int m)
 {
-	/* add your code here */
+    if (node == NULL) {
+        return; // 노드가 NULL이면 아무 작업도 하지 않음
+    }
+
+    // 왼쪽 서브트리를 먼저 탐색
+    printSmallerValues(node->left, m);
+
+    // 현재 노드의 값이 m보다 작은 경우 출력
+    if (node->item < m) {
+        printf("%d ", node->item);
+    }
+
+    // 오른쪽 서브트리를 탐색
+    printSmallerValues(node->right, m);
 }
+
 
 //////////////////////////////////////////////////////////////////////////////////
 

@@ -28,6 +28,7 @@ typedef struct _stackNode
 typedef struct _stack
 {
     StackNode *top;
+
 } Stack;
 
 ///////////////////////// function prototypes ////////////////////////////////////
@@ -99,10 +100,22 @@ int main()
 //////////////////////////////////////////////////////////////////////////////////
 
 int countOneChildNodes(BTNode *node)
-
 {
-    /* add your code here */
+    // 기저 조건: 노드가 NULL이면 0을 반환
+    if (node == NULL) {
+        return 0;
+    }
+
+    // 현재 노드에서 자식이 하나만 있는지 확인
+    int count = 0;
+    if ((node->left != NULL && node->right == NULL) || (node->left == NULL && node->right != NULL)) {
+        count = 1;
+    }
+
+    // 왼쪽과 오른쪽 서브트리에서 자식이 하나만 있는 노드의 개수를 더함
+    return count + countOneChildNodes(node->left) + countOneChildNodes(node->right);
 }
+
 
 ///////////////////////////////////////////////////////////////////////////////////
 
